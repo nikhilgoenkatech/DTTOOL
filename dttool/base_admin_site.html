@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+     <a class="navbar-brand" href="{% url 'dttool:index' %}"></a>
+</nav>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Dynatrace {% endblock %}</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{%static "dttool/images/Dynatrace-favicon.ico"%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/Dynatrace-main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/Dynatrace-groundhog-main.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/style.css' %}"/>
+    <script src="{% static 'dttool/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dttool/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+<nav class="navbar">
+    <div class="container-fluid">
+        <!-- Header -->
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

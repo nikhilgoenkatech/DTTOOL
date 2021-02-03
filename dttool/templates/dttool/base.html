@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Dynatrace | Health Check Tool {% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%static "dttool/images/Dynatrace-favicon.ico"%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/bootstrap-theme.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/bootstrap-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/style.css' %}"/>
+
+    <script src="{%static 'dttool/js/jquery.min.js' %}"</script>
+    <script src="{%static 'dttool/js/bootstrap.min.js' %}"</script>
+    <script src="{%static 'dttool/js/bootstrap.js' %}"</script>
+    <script src="{%static 'dttool/js/npm.js' %}"</script>
+
+<script type="text/javascript">
+	function toggle_visibility(id) {
+	  var e = document.getElementById(id);
+	  if(e.style.display == 'block')
+	     e.style.display = 'none';
+	  else
+	     e.style.display = 'block';
+
+	  if(e.style.display == 'none')
+	     e.classList.remove("masked");
+	  else
+	     e.classList.add("masked");
+	}
+</script>
+
+<script src="{%static 'dttool/js/jquery-ui.js' %}"</script>
+<script src="{%static 'dttool/js/jquery-ui.min.js' %}"</script>
+<script>
+;$( function() {
+  $( "#dialog" ).dialog({
+		height: 80,
+		width: 540,
+		modal: true,
+                resizable: false,
+                draggable: false,
+		dialogClass: 'no-close' });
+});
+</script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse"> 
+         <a class="navbar-brand" href="{% url 'dttool:index' %}"></a>
+    
+         <div class="collapse navbar-collapse" id="topNavBar">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if request.user.is_staff %}
+                    <li>
+                        <a href="{% url 'admin:index' %}">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp; Settings
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a href="{% url 'dttool:change_password' %}">
+                            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;Change Password 
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'dttool:logout_user' %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+        </div>
+    </nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

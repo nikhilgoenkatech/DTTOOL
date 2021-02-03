@@ -1,0 +1,151 @@
+{% extends 'dttool/base.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    {% if tenant_data %}
+    <div class="row ">
+        <div="col-sm-12">
+            <h3 style="color:white; padding-left:20px"><u>Basic Configuration</u></h3>
+        </div>
+
+        <span style="color: white "> Tenant Details </span>
+        <table tbl-top>
+            <thead>
+            {% for head in tenant_tbl%}
+               <th style="color:black">{{ head }}</th>
+            {% endfor %}
+            </thead>
+            <tbody>
+            {% for row in tenant_data %}
+                <tr>
+                {% for cell in row %}
+                    <td align="center" style="color:white">{{ cell }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    <br> 
+    <br>
+    {% endif %}
+
+    {% if email_data %}
+        <span style="color: white"> Email Configuration </span>
+        <table tbl-top>
+            <thead>
+            {% for head in email_tbl%}
+               <th style="color:black">{{ head }}</th>
+            {% endfor %}
+            </thead>
+            <tbody>
+            {% for row in email_data %}
+                <tr>
+                {% for cell in row %}
+                    <td align="center" style="color:white">{{ cell }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    {% endif %}
+    {% if flag %}
+       <div id="dialog" title="Report Generation Notification">
+       {{ message }}
+       </div>
+    {% endif %}
+
+ 
+    <br> 
+    <br> 
+    <br> 
+    <br>
+ 
+    {% if tenant_data %}
+    {% if smtp_data %}
+    <div class="row ">
+        <div="col-sm-12">
+            <h3 style="color:white; padding-left:30px"><u>Advanced Configuration</u></h3>
+        </div>
+        <span style="color: white ; padding-left:17px"> SMTP Configuration </span>
+        <table tbl-top style="margin-left:17px;">
+            <thead>
+            {% for head in smtp_titles %}
+               <th style="color:black">{{ head }}</th>
+            {% endfor %}
+            </thead>
+            <tbody>
+            {% for row in smtp_data %}
+                <tr>
+                {% for cell in row %}
+                    <td align="center" style="color:white">{{ cell }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    <br> 
+    <br> 
+    <br> 
+
+    {% if tenant_data %}
+    {% if data %}
+    <div class="row ">
+        <span style="color: white ; padding-left:30px"> Feature Adoption Flags </span>
+        <table tbl-top style="margin-left:30px;">
+            <thead>
+            {% for head in field_names %}
+               <th style="color:black">{{ head }}</th>
+            {% endfor %}
+            </thead>
+            <tbody>
+            {% for row in data %}
+                <tr>
+                {% for cell in row %}
+                    <td align="center" style="color:white">{{ cell }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    {% endif %}
+
+  <!-- <div class="container">
+     <div class="message-section" img>Centered div with left aligned text.</div>
+   </div>--!>
+    <div class="col-sm-12">
+        <br>
+        <br>
+        <a href="{% url 'dttool:generate_report' %}">
+           <button role="button" type="submit" class="btn btn--primary" id="generate_report_id" style="float: right; margin:5px;color:black; border: solid white" onclick="toggle_visibility('popupBoxOnePosition')">Generate Report
+        </a>
+        {% if request.user.is_staff %}
+         <a href="{% url 'admin:index' %}">
+            <button role="button" type="submit" class="btn btn--primary" id="modify_settings" style="float: right; margin:5px;color:black; border: solid white">Modify Settings
+         </a>
+         {% endif %}
+         </button>
+        </a>
+    </div>
+</div>
+
+<div id="popupBoxOnePosition">
+	<div class="popupBoxWrapper" style="text:colour;border: 3px solid #000;">
+		<div class="popupBoxContent" style="text-align:center">
+			<p>The report is getting generated. Please wait.....</p>
+                        {% load static %}
+                        <img src= "{% static "dttool/images/loading.gif" %}">
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

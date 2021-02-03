@@ -1,0 +1,48 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+{% load staticfiles %}
+
+<!-- Disable all the blocks that should not be highlighted --!>
+{% block bodyclass %}{% endblock %}
+{% block welcome-msg %}{% endblock %} 
+
+{% block extrastyle %}
+    <link rel="shortcut icon" type="image/png" href="{%static 'dttool/images/Dynatrace-favicon.ico'%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/bootstrap-theme.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/bootstrap-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dttool/style_settings.css' %}"/>
+    <style>
+
+      /* Bootstrap issues with admin */
+      * { box-sizing: unset; }
+      div.module caption { caption-side: top !important; }
+      .collapse { display: block !important; }
+    </style>
+{% endblock %}
+
+{% block nav-global %}
+  <nav class="navbar navbar-inverse">
+  </nav>
+{% endblock%}
+
+{% block userlinks%}
+       <a href="{% url 'dttool:index' %}">
+           <span class="glyphicon glyphicon-dashboard" aria-hidden="true" style="color:#9d9d9d"></span><font color="#9d9d9d">&nbsp;Back to Dashboard&nbsp;&nbsp;&nbsp;</font>
+       </a>
+       <a href="{% url 'dttool:logout_user' %}">
+           <span class="glyphicon glyphicon-user" aria-hidden="true" style="color:#9d9d9d"></span><font color="#9d9d9d">&nbsp;Logout</font>
+       </a>
+{% endblock %}
+
+   
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+    </a>
+</h1>
+{% endblock %}
+
+
